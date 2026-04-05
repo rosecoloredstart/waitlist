@@ -243,6 +243,15 @@ footer{padding:40px 0;border-top:1px solid var(--border2);text-align:center;}
 span.d{display:inline !important;}span.r{display:none !important;}
 .rose-mode .d{display:none !important;}.rose-mode .r{display:block !important;}
 .rose-mode span.d{display:none !important;}.rose-mode span.r{display:inline !important;}
+
+/* ═══════════ ROSE LENS CURSOR ═══════════ */
+.rose-lens-cursor{position:fixed;width:130px;height:130px;border-radius:50%;pointer-events:none;z-index:9000;transform:translate(-50%,-50%);transition:opacity 0.4s ease;opacity:0;background:radial-gradient(circle, rgba(232,112,138,0.2) 0%, rgba(232,112,138,0.07) 50%, transparent 70%);border:1.5px solid rgba(232,112,138,0.4);backdrop-filter:blur(2px);}
+.rose-lens-cursor.active{opacity:1;}
+.rose-lens-reveal{position:fixed;z-index:9001;pointer-events:none;transform:translate(-50%,-120%);background:rgba(14,10,6,0.94);border:1px solid rgba(232,112,138,0.35);border-radius:14px;padding:14px 20px;max-width:260px;text-align:center;opacity:0;transition:opacity 0.35s ease;backdrop-filter:blur(16px);}
+.rose-lens-reveal.visible{opacity:1;}
+.rose-lens-reveal-label{font-family:'Syne',sans-serif;font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose);margin-bottom:6px;}
+.rose-lens-reveal-text{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;color:#F0E6D6;line-height:1.5;}
+
 </style>
 </head>
 <body>
@@ -676,5 +685,131 @@ if(document.readyState==='loading'){
   startHeroShuffle();
 }
 </script>
+
+<!-- Rose Lens Cursor -->
+<div class="rose-lens-cursor" id="roseLensCursor"></div>
+<div class="rose-lens-reveal" id="roseLensReveal">
+  <div class="rose-lens-reveal-label" id="roseLensLabel">&#10022; Inside Rose Colored</div>
+  <div class="rose-lens-reveal-text" id="roseLensRevealText"></div>
+</div>
+
+
+<script>
+// ═══════════ WAITLIST LENS CURSOR ═══════════
+let waitlistLensState = 0;
+let waitlistLensTimer = null;
+let waitlistLensActive = false;
+
+const WAITLIST_REVEALS = [
+  { label: 'Inside Rose Colored', text: '847 members connected here last week. Your people are already inside.' },
+  { label: 'The Therapist Directory', text: 'Every therapist here already speaks your language. No explaining required.' },
+  { label: 'The Lens', text: '"I have to earn my place in every room." → You were always allowed to be there. That belief was never yours to carry.' },
+  { label: 'Community', text: 'The mac and cheese with eggs debate has 203 replies and counting.' },
+  { label: 'Daily Ritual', text: '"What are you bringing to the cookout today?" Rose Colored checks in with you every morning.' },
+  { label: 'Rose Mode', text: 'The same world. A completely different lens. You're looking through it right now.' },
+  { label: 'Inside the App', text: 'A creative space, a news feed that protects your peace, events where you actually gather. It's all waiting.' },
+];
+
+let revealIdx = 0;
+
+function getNextReveal(){
+  const r = WAITLIST_REVEALS[revealIdx % WAITLIST_REVEALS.length];
+  revealIdx++;
+  return r;
+}
+
+function initWaitlistLens(){
+  const cursor = document.getElementById('roseLensCursor');
+  const reveal = document.getElementById('roseLensReveal');
+  if(!cursor) return;
+
+  document.addEventListener('mousemove', e => {
+    if(!waitlistLensActive) return;
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    reveal.style.left = e.clientX + 'px';
+    reveal.style.top = e.clientY + 'px';
+  });
+
+  document.addEventListener('touchmove', e => {
+    if(!waitlistLensActive) return;
+    const touch = e.touches[0];
+    cursor.style.left = touch.clientX + 'px';
+    cursor.style.top = touch.clientY + 'px';
+    reveal.style.left = touch.clientX + 'px';
+    reveal.style.top = touch.clientY + 'px';
+  }, {passive:true});
+
+  // Reveal on click/tap when lens active
+  document.addEventListener('click', e => {
+    if(!waitlistLensActive) return;
+    if(e.target.closest('.glasses-wrap') || e.target.closest('button') || e.target.closest('a')) return;
+    showWaitlistReveal(e.clientX, e.clientY);
+  });
+
+  document.addEventListener('touchend', e => {
+    if(!waitlistLensActive) return;
+    const touch = e.changedTouches[0];
+    if(e.target.closest('.glasses-wrap') || e.target.closest('button') || e.target.closest('a')) return;
+    showWaitlistReveal(touch.clientX, touch.clientY);
+  });
+}
+
+function showWaitlistReveal(x, y){
+  const reveal = document.getElementById('roseLensReveal');
+  const label = document.getElementById('roseLensLabel');
+  const text = document.getElementById('roseLensRevealText');
+  const r = getNextReveal();
+  if(label) label.textContent = '✦ ' + r.label;
+  if(text) text.textContent = r.text;
+  reveal.style.left = x + 'px';
+  reveal.style.top = y + 'px';
+  reveal.classList.add('visible');
+  clearTimeout(reveal._hideTimer);
+  reveal._hideTimer = setTimeout(() => reveal.classList.remove('visible'), 3000);
+}
+
+function activateWaitlistLens(){
+  waitlistLensActive = true;
+  const cursor = document.getElementById('roseLensCursor');
+  if(cursor) cursor.classList.add('active');
+  // Show first reveal in center
+  showWaitlistReveal(window.innerWidth/2, window.innerHeight/2);
+}
+
+function deactivateWaitlistLens(){
+  waitlistLensActive = false;
+  const cursor = document.getElementById('roseLensCursor');
+  const reveal = document.getElementById('roseLensReveal');
+  if(cursor) cursor.classList.remove('active');
+  if(reveal) reveal.classList.remove('visible');
+}
+
+// Override toggleRose for waitlist 3-state
+const _origWaitlistToggle = toggleRose;
+function toggleRose(){
+  waitlistLensState = (waitlistLensState + 1) % 3;
+  if(waitlistLensState === 0){
+    deactivateWaitlistLens();
+    if(waitlistLensTimer) clearTimeout(waitlistLensTimer);
+    roseOn = true; _origWaitlistToggle();
+  } else if(waitlistLensState === 1){
+    roseOn = false; _origWaitlistToggle();
+    if(waitlistLensTimer) clearTimeout(waitlistLensTimer);
+    waitlistLensTimer = setTimeout(() => {
+      if(waitlistLensState === 1){ waitlistLensState = 2; activateWaitlistLens(); }
+    }, 3500);
+  } else {
+    waitlistLensState = 0;
+    deactivateWaitlistLens();
+    if(waitlistLensTimer) clearTimeout(waitlistLensTimer);
+    roseOn = true; _origWaitlistToggle();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initWaitlistLens);
+setTimeout(initWaitlistLens, 500);
+</script>
+
 </body>
 </html>
