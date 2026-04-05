@@ -124,10 +124,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,4,3,0.92)
 .features-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,48px);font-weight:300;line-height:1.1;text-align:center;margin-bottom:16px;}
 .features-headline em{font-style:italic;color:var(--accent);}
 .features-sub{font-size:15px;color:var(--text-soft);text-align:center;max-width:500px;margin:0 auto 60px;}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-@media(max-width:900px){.features-grid{grid-template-columns:repeat(2,1fr);}}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:1000px){.features-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:560px){.features-grid{grid-template-columns:1fr;}}
-.feature-card{background:var(--bg3);border:1px solid var(--border2);border-radius:16px;padding:28px;transition:var(--transition);position:relative;overflow:hidden;}
+.feature-card{background:var(--bg3);border:1px solid var(--border2);border-radius:16px;padding:20px;transition:var(--transition);position:relative;overflow:hidden;}
 .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose));opacity:0;transition:opacity 0.3s;}
 .feature-card:hover{border-color:var(--border);background:var(--bg4);transform:translateY(-2px);}
 .feature-card:hover::before{opacity:1;}
@@ -345,7 +345,7 @@ span.d{display:inline !important;}span.r{display:none !important;}
   <div class="wrap">
     <div class="eyebrow" style="text-align:center;">&#10022; What's Inside</div>
     <h2 class="features-headline d">Everything Black life <em>actually needs.</em></h2><h2 class="features-headline r">One screen. <em>All of it.</em></h2>
-    <p class="features-sub d">Not a single feature was added because it would look good in a pitch deck. Every one of these exists because someone in our community needed it.</p><p class="features-sub r">This is what the home screen was always supposed to look like — if someone actually built it for you.</p>
+    <p class="features-sub d">Built around what Black life actually looks like — the full picture, not just the parts that are easy to explain.</p><p class="features-sub r">This is what the home screen was always supposed to look like — if someone actually built it for you.</p>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent)"><circle cx="10" cy="6" r="3.5"/><path d="M3 18c0-4 3.1-7 7-7s7 3 7 7"/></svg></div>
@@ -399,8 +399,8 @@ span.d{display:inline !important;}span.r{display:none !important;}
 <section class="section" style="position:relative;z-index:1;">
   <div class="wrap">
     <div class="eyebrow" style="text-align:center;margin-bottom:16px;">&#10022; Who This Is For</div>
-    <h2 class="section-headline" style="text-align:center;margin-bottom:14px;">For everyone who's ever had to<br><em>explain the context first.</em></h2>
-    <p style="font-size:15px;color:var(--text-soft);text-align:center;max-width:480px;margin:0 auto 52px;line-height:1.75;">You won't have to here.</p>
+    <h2 class="section-headline d" style="text-align:center;margin-bottom:14px;">For everyone who's ever had to<br><em>explain the context first.</em></h2><h2 class="section-headline r" style="text-align:center;margin-bottom:14px;">You already belong here.<br><em>No explanation needed.</em></h2>
+    <p class="d" style="font-size:15px;color:var(--text-soft);text-align:center;max-width:480px;margin:0 auto 52px;line-height:1.75;">You won't have to here.</p><p class="r" style="font-size:15px;color:var(--text-soft);text-align:center;max-width:480px;margin:0 auto 52px;line-height:1.75;">The context is already built in.</p>
     <div class="for-them-grid">
       <div class="for-them-card">
         <div class="for-them-icon">&#10022;</div>
@@ -431,7 +431,7 @@ span.d{display:inline !important;}span.r{display:none !important;}
     <div class="manifesto-quote r">
       The lens doesn't change the facts. It changes <span class="hl">where you stand</span> when you look at them — and that changes everything.
     </div>
-    <div class="manifesto-attr">&#8212; Rose Colored</div>
+    <div class="manifesto-attr" style="display:none;"></div>
   </div>
 </section>
 
