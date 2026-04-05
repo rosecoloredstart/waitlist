@@ -124,8 +124,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,4,3,0.92)
 .features-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,48px);font-weight:300;line-height:1.1;text-align:center;margin-bottom:16px;}
 .features-headline em{font-style:italic;color:var(--accent);}
 .features-sub{font-size:15px;color:var(--text-soft);text-align:center;max-width:500px;margin:0 auto 60px;}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-@media(max-width:900px){.features-grid{grid-template-columns:repeat(2,1fr);}}
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 @media(max-width:560px){.features-grid{grid-template-columns:1fr;}}
 .feature-card{background:var(--bg3);border:1px solid var(--border2);border-radius:16px;padding:22px;transition:var(--transition);position:relative;overflow:hidden;}
 .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--rose));opacity:0;transition:opacity 0.3s;}
@@ -389,14 +388,18 @@ span.d{display:inline !important;}span.r{display:none !important;}
         <div class="feature-desc">Virtual and in-person events — wellness workshops, community check-ins, creative gatherings, and coworking sessions — built around and by the community.</div>
         <span class="feature-tag">&#10022; Community In Real Life</span>
       </div>
-      <div class="feature-card" style="background:linear-gradient(135deg,var(--bg4),var(--bg3));border-color:var(--border);grid-column:span 3;">
-        <div style="max-width:560px;">
+      <div class="feature-card" style="background:linear-gradient(135deg,var(--bg4),var(--bg3));border-color:var(--border);">
         <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent)"><path d="M10 2l1.8 5.4H17l-4.4 3.2 1.7 5.4L10 13l-4.3 3 1.7-5.4L3 7.4h5.2z"/></svg></div>
         <div class="feature-name" style="color:var(--accent);">The RC Promise</div>
         <div class="feature-desc" style="color:var(--text-soft);">Built by us, for us. No algorithms trained to ignore you. No features added for optics. Just a space designed with you as the whole point — from day one.</div>
         <span class="feature-tag" style="color:var(--accent);">&#10022; Our Commitment</span>
-        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
 <section class="section" style="position:relative;z-index:1;">
   <div class="wrap">
     <div class="eyebrow" style="text-align:center;margin-bottom:16px;">&#10022; Who This Is For</div>
