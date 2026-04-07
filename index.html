@@ -61,10 +61,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,4,3,0.92)
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;align-items:stretch;position:relative;overflow:hidden;}
 .hero-inner{width:100%;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;position:relative;z-index:1;}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr;min-height:auto;}}
+@media(max-width:900px) and (min-width:701px){.hero-inner{grid-template-columns:1fr;min-height:auto;}}
 .hero-left-col{display:flex;flex-direction:column;justify-content:center;padding:120px 60px 80px 60px;}
 @media(max-width:1200px){.hero-left-col{padding:100px 40px 60px 40px;}}
-@media(max-width:900px){.hero-left-col{padding:60px 20px 40px;}}
+@media(max-width:900px) and (min-width:701px){.hero-left-col{padding:60px 20px 40px;}}
 .hero-eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--rose);margin-bottom:24px;display:flex;align-items:center;gap:10px;}
 .hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--rose);}
 .hero-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,82px);font-weight:300;line-height:1.04;margin-bottom:28px;}
@@ -79,7 +79,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,4,3,0.92)
 
 /* Hero right - editorial collage */
 .hero-right-col{position:relative;display:flex;flex-direction:column;}
-@media(max-width:900px){.hero-right-col{min-height:50vh;}}
+@media(max-width:900px) and (min-width:701px){.hero-right-col{min-height:50vh;}}
 .hero-collage{position:absolute;top:0;right:0;bottom:0;left:0;}
 .collage-grid{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;overflow:hidden;}
 .collage-cell{position:relative;overflow:hidden;background:var(--bg3);}
@@ -209,16 +209,16 @@ footer{padding:40px 0;border-top:1px solid var(--border2);text-align:center;}
   .nav-cta{display:none;}
   nav{padding:0 16px;justify-content:space-between;}
 
-  /* Hero - collage fills full width behind text, fade does the work */
-  .hero{min-height:100vh;padding-top:0;position:relative;}
-  .hero-inner{display:block;min-height:100vh;position:relative;}
-  .hero-right-col{position:absolute;inset:0;z-index:0;}
+  /* Hero - two column on mobile, same as desktop */
+  .hero{min-height:100vh;padding-top:0;}
+  .hero-inner{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+  .hero-left-col{padding:80px 16px 40px 20px;justify-content:center;}
+  .hero-headline{font-size:clamp(24px,6vw,36px);}
+  .hero-sub{font-size:13px;max-width:100%;margin-bottom:28px;}
+  .hero-right-col{position:relative;}
   .hero-collage{position:absolute;inset:0;}
-  .hero-left-col{position:relative;z-index:2;padding:90px 24px 60px;display:flex;flex-direction:column;justify-content:center;min-height:100vh;max-width:75%;}
-  .hero-headline{font-size:clamp(34px,9vw,52px);}
-  .hero-sub{font-size:14px;max-width:100%;}
-  /* Strengthen the left fade on mobile so text stays readable */
-  .hero-collage::before{background:linear-gradient(to right,var(--bg) 0%,var(--bg) 30%,rgba(6,4,3,0.7) 60%,transparent 100%) !important;}
+  .collage-grid{position:absolute;inset:0;}
+  .btn-waitlist{font-size:10px;padding:12px 20px;}
 
   /* Sections */
   .section{padding:60px 0;}
