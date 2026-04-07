@@ -23,11 +23,6 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 5%,rgba(200,144,74,0.07) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 90% 90%,rgba(232,112,138,0.05) 0%,transparent 50%);pointer-events:none;z-index:0;}
 
-/* ── DEMO BANNER ── */
-.demo-banner{position:fixed;top:80px;left:20px;z-index:999;background:rgba(6,4,3,0.75);backdrop-filter:blur(8px);border:1px solid rgba(200,144,74,0.35);border-radius:50px;padding:6px 14px;pointer-events:none;display:flex;align-items:center;gap:7px;}
-.demo-banner-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;}
-.demo-banner span{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-soft);white-space:nowrap;}
-
 
 /* ── ROSE MODE ── */
 .rose-mode{
@@ -214,10 +209,6 @@ footer{padding:40px 0;border-top:1px solid var(--border2);text-align:center;}
   .nav-cta{display:none;}
   nav{padding:0 16px;justify-content:space-between;}
 
-  /* Demo pill - tuck under nav neatly */
-  .demo-banner{top:72px;left:12px;padding:5px 10px;}
-  .demo-banner span{font-size:8px;letter-spacing:0.1em;}
-
   /* Hero - full single column, text first */
   .hero{padding-top:0;min-height:auto;flex-direction:column;}
   .hero-inner{grid-template-columns:1fr;min-height:auto;display:flex;flex-direction:column;}
@@ -257,7 +248,6 @@ span.d{display:inline !important;}span.r{display:none !important;}
 <body>
 
 <div class="lens-toast" id="lensToast"></div>
-<div class="demo-banner"><div class="demo-banner-dot"></div><span>You're looking at a demo</span></div>
 
 <!-- ── FLOATING WAITLIST BUTTON ── -->
 <button class="float-btn" onclick="openWaitlist()">
@@ -269,7 +259,7 @@ span.d{display:inline !important;}span.r{display:none !important;}
 <nav>
   <div class="nav-logo">Rose <span>Colored</span></div>
   <div style="display:flex;align-items:center;gap:12px;">
-    <div class="glasses-wrap" id="glassesWrap" onclick="toggleRose()">
+    <div class="glasses-wrap" id="glassesWrap" onclick="handleGlassesClick()">
       <div class="glasses-frame" id="glassesFrame">
         <svg width="24" height="10" viewBox="0 0 24 10" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="5" cy="5" r="4" stroke="var(--rose)" stroke-width="1.4"/>
@@ -348,11 +338,51 @@ span.d{display:inline !important;}span.r{display:none !important;}
 
 <div class="section-divider"></div>
 
+<!-- ── SEE IT IN ACTION ── -->
+<section class="section" style="position:relative;z-index:1;">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="eyebrow">&#10022; See It in Action</div>
+      <h2 class="section-headline d" style="text-align:center;">This is what it<br><em>actually looks like.</em></h2>
+      <h2 class="section-headline r" style="text-align:center;">The lens, live.<br><em>See for yourself.</em></h2>
+      <p class="section-body" style="text-align:center;margin:0 auto;max-width:460px;">Take a look inside Rose Colored — the community, the tools, the care. All of it, built for you.</p>
+    </div>
+    <div style="max-width:340px;margin:0 auto;position:relative;">
+      <!-- Phone frame wrapper -->
+      <div style="position:relative;border-radius:40px;overflow:hidden;box-shadow:0 0 0 1px var(--border),0 0 0 10px var(--bg2),0 0 60px rgba(200,144,74,0.15),0 40px 80px rgba(0,0,0,0.5);background:var(--bg);">
+        <!-- Notch bar -->
+        <div style="height:28px;background:var(--bg);display:flex;align-items:center;justify-content:center;position:relative;z-index:2;">
+          <div style="width:90px;height:10px;background:var(--bg2);border-radius:0 0 12px 12px;border:1px solid var(--border2);border-top:none;"></div>
+        </div>
+        <!-- Video container -->
+        <div style="padding:209.81% 0 0 0;position:relative;">
+          <iframe src="https://player.vimeo.com/video/1180649542?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Demo"></iframe>
+        </div>
+        <!-- Bottom bar -->
+        <div style="height:28px;background:var(--bg);display:flex;align-items:center;justify-content:center;">
+          <div style="width:100px;height:4px;background:var(--bg4);border-radius:50%;"></div>
+        </div>
+      </div>
+      <!-- Ambient glow underneath -->
+      <div style="position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:200px;height:60px;background:radial-gradient(ellipse,rgba(200,144,74,0.18),transparent 70%);pointer-events:none;filter:blur(10px);"></div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <button class="btn-waitlist" onclick="openWaitlist()" style="display:inline-flex;">
+        Join the Waitlist
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<div class="section-divider"></div>
+
 <!-- ── FEATURES ── -->
 <section class="section features-bg" style="position:relative;z-index:1;">
   <div class="wrap">
     <div class="eyebrow" style="text-align:center;">&#10022; What's Inside</div>
-    <h2 class="features-headline d">Everything you <em>actually need.</em></h2><h2 class="features-headline r">One screen. <em>All of it.</em></h2>
+    <h2 class="features-headline d">Everything Black life <em>actually needs.</em></h2><h2 class="features-headline r">One screen. <em>All of it.</em></h2>
     <p class="features-sub d">Black life is layered. These tools are too — designed to support and celebrate the full range of who you are.</p><p class="features-sub r">This is what the home screen was always supposed to look like — if someone actually built it for you.</p>
     <div class="features-grid">
       <div class="feature-card">
@@ -534,6 +564,24 @@ function toggleRose(){
     label.textContent='Put them on';
     wrap.classList.remove('lens-on');
     showToast('The lens comes off. But the belief remains.');
+  }
+}
+function handleGlassesClick(){
+  window._lensState = ((window._lensState||0) + 1) % 3;
+  const nextState = window._lensState;
+  if(nextState === 1){
+    if(!roseOn) toggleRose();
+    clearTimeout(window._lensTimer);
+    window._lensTimer = setTimeout(()=>{
+      if(window._lensState===1){ window._lensState=2; activateWaitlistLens(); }
+    }, 3500);
+  } else if(nextState === 2){
+    // activating via timer
+  } else {
+    if(roseOn) toggleRose();
+    clearTimeout(window._lensTimer);
+    window._lensState = 0;
+    deactivateWaitlistLens();
   }
 }
 function showToast(msg){
@@ -786,26 +834,7 @@ function deactivateWaitlistLens(){
 }
 
 // Override toggleRose for waitlist 3-state
-const _origWaitlistToggle = toggleRose;
-function toggleRose(){
-  waitlistLensState = (waitlistLensState + 1) % 3;
-  if(waitlistLensState === 0){
-    deactivateWaitlistLens();
-    if(waitlistLensTimer) clearTimeout(waitlistLensTimer);
-    roseOn = true; _origWaitlistToggle();
-  } else if(waitlistLensState === 1){
-    roseOn = false; _origWaitlistToggle();
-    if(waitlistLensTimer) clearTimeout(waitlistLensTimer);
-    waitlistLensTimer = setTimeout(() => {
-      if(waitlistLensState === 1){ waitlistLensState = 2; activateWaitlistLens(); }
-    }, 3500);
-  } else {
-    waitlistLensState = 0;
-    deactivateWaitlistLens();
-    if(waitlistLensTimer) clearTimeout(waitlistLensTimer);
-    roseOn = true; _origWaitlistToggle();
-  }
-}
+
 
 document.addEventListener('DOMContentLoaded', initWaitlistLens);
 setTimeout(initWaitlistLens, 500);
