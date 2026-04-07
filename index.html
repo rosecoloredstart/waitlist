@@ -209,13 +209,16 @@ footer{padding:40px 0;border-top:1px solid var(--border2);text-align:center;}
   .nav-cta{display:none;}
   nav{padding:0 16px;justify-content:space-between;}
 
-  /* Hero - full single column, text first */
-  .hero{padding-top:0;min-height:auto;flex-direction:column;}
-  .hero-inner{grid-template-columns:1fr;min-height:auto;display:flex;flex-direction:column;}
-  .hero-left-col{padding:90px 20px 40px;order:1;}
-  .hero-headline{font-size:clamp(36px,10vw,52px);}
-  .hero-sub{font-size:14px;max-width:100%;}
-  .hero-right-col{order:2;position:relative;height:60vw;min-height:260px;max-height:340px;width:100%;}
+  /* Override 900px collapse — keep side-by-side on mobile */
+  .hero-inner{grid-template-columns:3fr 2fr !important;display:grid !important;min-height:100vh !important;}
+  .hero-right-col{min-height:unset !important;}
+  /* Hero - keep side-by-side, collage right fading into text */
+  .hero{min-height:100vh;padding-top:0;}
+  .hero-inner{grid-template-columns:3fr 2fr;min-height:100vh;display:grid;}
+  .hero-left-col{padding:90px 20px 48px 20px;justify-content:center;position:relative;z-index:2;}
+  .hero-headline{font-size:clamp(30px,8vw,48px);}
+  .hero-sub{font-size:13px;max-width:100%;}
+  .hero-right-col{position:relative;}
   .hero-collage{position:absolute;inset:0;}
 
   /* Sections */
@@ -347,20 +350,22 @@ span.d{display:inline !important;}span.r{display:none !important;}
       <h2 class="section-headline r" style="text-align:center;">The lens, live.<br><em>See for yourself.</em></h2>
       <p class="section-body" style="text-align:center;margin:0 auto;max-width:460px;">Take a look inside Rose Colored — the community, the tools, the care. All of it, built for you.</p>
     </div>
-    <div style="max-width:340px;margin:0 auto;position:relative;">
-      <!-- Phone frame wrapper -->
-      <div style="position:relative;border-radius:40px;overflow:hidden;box-shadow:0 0 0 1px var(--border),0 0 0 10px var(--bg2),0 0 60px rgba(200,144,74,0.15),0 40px 80px rgba(0,0,0,0.5);background:var(--bg);">
+    <div style="max-width:280px;margin:0 auto;position:relative;">
+      <!-- Phone frame wrapper — height capped so it fits on screen -->
+      <div style="position:relative;border-radius:36px;overflow:hidden;box-shadow:0 0 0 1px var(--border),0 0 0 10px var(--bg2),0 0 60px rgba(200,144,74,0.15),0 40px 80px rgba(0,0,0,0.5);background:var(--bg);max-height:80vh;display:flex;flex-direction:column;">
         <!-- Notch bar -->
-        <div style="height:28px;background:var(--bg);display:flex;align-items:center;justify-content:center;position:relative;z-index:2;">
-          <div style="width:90px;height:10px;background:var(--bg2);border-radius:0 0 12px 12px;border:1px solid var(--border2);border-top:none;"></div>
+        <div style="height:26px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:2;">
+          <div style="width:80px;height:9px;background:var(--bg2);border-radius:0 0 10px 10px;border:1px solid var(--border2);border-top:none;"></div>
         </div>
-        <!-- Video container -->
-        <div style="padding:209.81% 0 0 0;position:relative;">
-          <iframe src="https://player.vimeo.com/video/1180649542?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Demo"></iframe>
+        <!-- Video container — fills remaining height, crops overflow -->
+        <div style="flex:1;overflow:hidden;position:relative;min-height:0;">
+          <div style="padding:209.81% 0 0 0;position:relative;">
+            <iframe src="https://player.vimeo.com/video/1180649542?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Demo"></iframe>
+          </div>
         </div>
         <!-- Bottom bar -->
-        <div style="height:28px;background:var(--bg);display:flex;align-items:center;justify-content:center;">
-          <div style="width:100px;height:4px;background:var(--bg4);border-radius:50%;"></div>
+        <div style="height:26px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <div style="width:90px;height:4px;background:var(--bg4);border-radius:50%;"></div>
         </div>
       </div>
       <!-- Ambient glow underneath -->
