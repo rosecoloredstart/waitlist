@@ -342,7 +342,7 @@ span.d{display:inline !important;}span.r{display:none !important;}
   <div class="wrap">
     <div style="text-align:center;margin-bottom:48px;">
       <div class="eyebrow">&#10022; See It in Action</div>
-      <h2 class="section-headline d" style="text-align:center;">This is what it<br><em>actually looks like.</em></h2>
+      <h2 class="section-headline d" style="text-align:center;">This is what it<br><em>it looks like.</em></h2>
       <h2 class="section-headline r" style="text-align:center;">The lens, live.<br><em>See for yourself.</em></h2>
       <p class="section-body" style="text-align:center;margin:0 auto;max-width:460px;">Take a look inside Rose Colored — the community, the tools, the care. All of it, built for you.</p>
     </div>
@@ -383,7 +383,7 @@ span.d{display:inline !important;}span.r{display:none !important;}
 <section class="section features-bg" style="position:relative;z-index:1;">
   <div class="wrap">
     <div class="eyebrow" style="text-align:center;">&#10022; What's Inside</div>
-    <h2 class="features-headline d">Everything Black life <em>actually needs.</em></h2><h2 class="features-headline r">One screen. <em>All of it.</em></h2>
+    <h2 class="features-headline d">Everything you <em>actually need.</em></h2><h2 class="features-headline r">One screen. <em>All of it.</em></h2>
     <p class="features-sub d">Black life is layered. These tools are too — designed to support and celebrate the full range of who you are.</p><p class="features-sub r">This is what the home screen was always supposed to look like — if someone actually built it for you.</p>
     <div class="features-grid">
       <div class="feature-card">
@@ -622,81 +622,53 @@ const HERO_IMGS = [
 ];
 
 
-// Shuffle 14 images across 3 slots, rotating every 4s with crossfade
-// Assign distinct images to each slot, no repeats within same view
-let heroSets = [];
-let heroSetIdx = 0;
+// Always-random hero shuffle — picks a fresh random trio each rotation,
+// never repeating any image currently visible on screen.
+let currentHeroIndices = [-1, -1, -1];
 
-function buildHeroSets() {
-  // Create shuffled rotation sets ensuring no slot shows same img consecutively
-  const indices = Array.from({length: HERO_IMGS.length}, (_, i) => i); // 14 images
-  // Shuffle
-  for (let i = indices.length - 1; i > 0; i--) {
+function pickRandomSet() {
+  const total = HERO_IMGS.length;
+  const available = Array.from({length: total}, (_, i) => i)
+    .filter(i => !currentHeroIndices.includes(i));
+  // Fisher-Yates shuffle of available pool
+  for (let i = available.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
+    [available[i], available[j]] = [available[j], available[i]];
   }
-  // Build groups of 3 (one per slot)
-  heroSets = [];
-  for (let i = 0; i < indices.length - 2; i += 3) {
-    heroSets.push([indices[i], indices[i+1], indices[i+2]]);
-  }
-  // Pad if needed with remaining
-  if (heroSets.length === 0) heroSets.push([0, 1, 2]);
-}
-
-function applyHeroSet(setIdx, fade) {
-  const set = heroSets[setIdx % heroSets.length];
-  for (let slot = 0; slot < 3; slot++) {
-    const img = document.getElementById('hero-img-' + slot);
-    if (!img) continue;
-    if (fade) {
-      img.style.opacity = '0';
-      img.style.transition = 'opacity 0.8s ease';
-      setTimeout(() => {
-        img.src = HERO_IMGS[set[slot]];
-        img.style.display = 'block';
-        img.onload = () => { img.style.opacity = '1'; };
-        img.onerror = () => { img.style.opacity = '1'; };
-      }, 400);
-    } else {
-      img.src = HERO_IMGS[set[slot]];
-      img.style.display = 'block';
-      img.style.opacity = '1';
-    }
-  }
+  return [available[0], available[1], available[2]];
 }
 
 let heroStarted = false;
 function startHeroShuffle() {
   if (heroStarted) return;
   heroStarted = true;
-  buildHeroSets();
-  // Set first batch immediately, no transition
-  const firstSet = heroSets[0];
+
+  // Pick and show first random set immediately (no fade on load)
+  const firstSet = pickRandomSet();
+  currentHeroIndices = firstSet;
   for (let slot = 0; slot < 3; slot++) {
     const img = document.getElementById('hero-img-' + slot);
-    if (!img) return; // DOM not ready yet
+    if (!img) return;
     img.src = HERO_IMGS[firstSet[slot]];
     img.style.opacity = '1';
     img.style.transition = 'none';
     img.style.display = 'block';
   }
+
   setInterval(() => {
-    heroSetIdx = (heroSetIdx + 1) % heroSets.length;
-    const set = heroSets[heroSetIdx];
+    const nextSet = pickRandomSet();
+    currentHeroIndices = nextSet;
     for (let slot = 0; slot < 3; slot++) {
       const img = document.getElementById('hero-img-' + slot);
       if (!img) continue;
-      // Fade out
       img.style.transition = 'opacity 0.7s ease';
       img.style.opacity = '0';
-      // After fade out, swap src and fade in
       const capturedSlot = slot;
-      const capturedSet = set;
+      const capturedSrc = HERO_IMGS[nextSet[slot]];
       setTimeout(() => {
         const el = document.getElementById('hero-img-' + capturedSlot);
         if (!el) return;
-        el.src = HERO_IMGS[capturedSet[capturedSlot]];
+        el.src = capturedSrc;
         el.style.display = 'block';
         el.style.transition = 'opacity 0.9s ease';
         el.style.opacity = '1';
