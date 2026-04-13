@@ -2,290 +2,187 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — Rose Colored</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Syne:wght@700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy & Terms — Rose Colored</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #060403;
-      --bg2: #0e0a08;
-      --bg3: #16100d;
-      --text: #F0E6D6;
-      --text-soft: #C4AE98;
-      --text-muted: #7A6654;
-      --accent: #C8904A;
-      --rose: #E8708A;
-      --border: rgba(200, 144, 74, 0.15);
-      --border2: rgba(240, 230, 214, 0.07);
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --border: #2a2a2a;
+      --text: #e8e0d5;
+      --muted: #888;
+      --amber: #c9933a;
+      --rose: #b56b6b;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 300;
-      min-height: 100vh;
-      line-height: 1.6;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      line-height: 1.8;
     }
 
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg2);
+    header {
+      padding: 48px 24px 32px;
+      text-align: center;
       border-bottom: 1px solid var(--border);
-      padding: 16px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
 
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
+    .wordmark {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      font-weight: 400;
       font-style: italic;
-      font-weight: 300;
-      font-size: 22px;
       color: var(--text);
-      text-decoration: none;
-      letter-spacing: 0.5px;
-    }
-
-    .nav-logo span {
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--accent);
-      margin-top: 4px;
-    }
-
-    .nav-back {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-back:hover { color: var(--accent); }
-
-    /* HERO */
-    .hero {
-      padding: 72px 40px 48px;
-      max-width: 720px;
-      margin: 0 auto;
-      border-bottom: 1px solid var(--border2);
-    }
-
-    .eyebrow {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(32px, 5vw, 48px);
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-meta {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    /* TABS */
-    .tabs-wrap {
-      position: sticky;
-      top: 57px;
-      z-index: 90;
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border2);
     }
 
     .tabs {
-      max-width: 720px;
-      margin: 0 auto;
       display: flex;
-      padding: 0 40px;
+      justify-content: center;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
     }
 
     .tab-btn {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding: 14px 20px 12px;
-      border: none;
       background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 32px;
       cursor: pointer;
       border-bottom: 2px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
+      transition: all 0.2s;
     }
 
     .tab-btn.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-
-    .tab-btn:hover:not(.active) { color: var(--text-soft); }
-
-    /* CONTENT */
-    .content {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 40px 80px;
+      color: var(--amber);
+      border-bottom-color: var(--amber);
     }
 
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    .section-title {
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .last-updated {
       font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      letter-spacing: 3px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
       text-transform: uppercase;
-      color: var(--accent);
-      margin-top: 40px;
-      margin-bottom: 12px;
+      margin-bottom: 40px;
     }
 
-    .section-title:first-child { margin-top: 0; }
-
-    p {
-      font-size: 16px;
-      color: var(--text-soft);
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-
-    p:last-child { margin-bottom: 0; }
-
-    /* DISCLAIMER BOX */
     .disclaimer-box {
-      background: var(--bg3);
-      border: 1px solid rgba(232, 112, 138, 0.25);
-      border-radius: 14px;
+      border: 1px solid var(--rose);
+      border-radius: 4px;
       padding: 24px;
-      margin-bottom: 36px;
+      margin-bottom: 40px;
+      background: rgba(181, 107, 107, 0.06);
     }
 
-    .disclaimer-label {
+    .disclaimer-box .label {
       font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      letter-spacing: 3px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--rose);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .disclaimer-box p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-soft);
-      margin-bottom: 12px;
+      font-size: 16px;
+      color: #c9b8b8;
+      margin-bottom: 10px;
     }
 
-    .disclaimer-box p:last-child { margin-bottom: 0; }
-
-    /* DIVIDER */
-    hr {
-      border: none;
-      border-top: 1px solid var(--border2);
-      margin: 40px 0;
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin: 36px 0 12px;
     }
 
-    /* CONTACT */
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(200, 144, 74, 0.3);
-      transition: border-color 0.2s;
+    p {
+      margin-bottom: 16px;
+      color: #c8bfb5;
     }
 
-    a:hover { border-bottom-color: var(--accent); }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    nav a { border-bottom: none; }
+    /* Delete account highlight box */
+    .delete-box {
+      border: 1px solid var(--amber);
+      border-radius: 4px;
+      padding: 24px;
+      margin: 16px 0 32px;
+      background: rgba(201, 147, 58, 0.06);
+    }
 
-    /* FOOTER */
+    .delete-box p {
+      color: #c8bfb5;
+      margin-bottom: 10px;
+    }
+
+    .delete-box p:last-child { margin-bottom: 0; }
+
     footer {
       text-align: center;
-      padding: 32px 40px;
-      border-top: 1px solid var(--border2);
-    }
-
-    footer p {
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
       font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      letter-spacing: 2px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      font-size: 10px;
-      margin: 0;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
-      nav { padding: 14px 20px; }
-      .hero { padding: 48px 20px 36px; }
-      .tabs { padding: 0 20px; }
-      .content { padding: 36px 20px 60px; }
-      footer { padding: 24px 20px; }
-      .tab-btn { padding: 12px 14px 10px; }
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="https://rosecolored.co" class="nav-logo">
-      RC
-      <span></span>
-    </a>
-    <a href="https://rosecolored.co" class="nav-back">← Back to Rose Colored</a>
-  </nav>
+  <header>
+    <div class="wordmark">Rose Colored</div>
+    <h1>Privacy & Terms</h1>
+  </header>
 
-  <div class="hero">
-    <p class="eyebrow">✦ Legal</p>
-    <h1>Your data. <em>Your terms.</em></h1>
-    <p class="hero-meta">Last updated: April 2026</p>
-  </div>
-
-  <div class="tabs-wrap">
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('', this)"> Policy</button>
-      <button class="tab-btn" onclick="switchTab('terms', this)">Terms of Use</button>
-    </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('privacy', this)">Privacy Policy</button>
+    <button class="tab-btn" onclick="switchTab('terms', this)">Terms of Use</button>
+    <button class="tab-btn" onclick="switchTab('delete', this)">Delete Account</button>
   </div>
 
   <div class="content">
 
-    <!--  POLICY -->
-    <div id="" class="tab-panel active">
+    <div id="privacy" class="tab-panel active">
+      <p class="last-updated">Last updated: April 2026</p>
 
-      <p class="section-title">Who We Are</p>
-      <p>Rose Colored is a wellness community built specifically for Black life. We are committed to protecting your  and handling your data with care and transparency.</p>
+      <p>Rose Colored is built for Black life — and that means your privacy matters deeply to us. We are committed to protecting your privacy and handling your data with care and transparency.</p>
 
       <p class="section-title">What We Collect</p>
       <p>We collect information you provide directly: your email address, display name, avatar, city, interests, and the answers you share in your Black Card. We also collect usage data to improve the experience — things like which features you use and how often you log in.</p>
@@ -294,8 +191,11 @@
       <p class="section-title">How We Use Your Data</p>
       <p>Your data is used to personalize your experience, surface relevant content and community members, and keep the space safe. Your presence setting (Full Color, Tinted, or Anonymous) controls what other members can see about you.</p>
 
-      <p class="section-title">Your  Controls</p>
-      <p>You control what's visible on your profile. You can change your presence, hide your interests, or remove your Black Card answers at any time from your Profile settings. You can also delete your account by contacting us at <a href="mailto:@rosecolored.co">@rosecolored.co</a>.</p>
+      <p class="section-title">Camera & Media Access</p>
+      <p>Rose Colored requests access to your camera and media library so you can upload a profile photo and share images in the community. We do not store camera data beyond what you explicitly choose to upload. Camera access is never used in the background.</p>
+
+      <p class="section-title">Your Privacy Controls</p>
+      <p>You control what's visible on your profile. You can change your presence, hide your interests, or remove your Black Card answers at any time from your Profile settings.</p>
 
       <p class="section-title">Data Storage</p>
       <p>Your data is stored securely using Supabase infrastructure. We use industry-standard encryption and access controls to protect your information.</p>
@@ -305,16 +205,15 @@
 
       <p class="section-title">Contact</p>
       <p>Questions about your privacy? Reach us at <a href="mailto:hello@rosecolored.co">hello@rosecolored.co</a>.</p>
-
     </div>
 
-    <!-- TERMS OF USE -->
     <div id="terms" class="tab-panel">
+      <p class="last-updated">Last updated: April 2026</p>
 
       <div class="disclaimer-box">
-        <p class="disclaimer-label">✦ Mental Health Disclaimer</p>
+        <div class="label">✦ Mental Health Disclaimer</div>
         <p>Rose Colored is a peer community and wellness tool. It is not a substitute for professional mental health care, therapy, or medical advice. Nothing shared in this app — by community members, through AI-powered tools like The Lens, or through any content in the Library — constitutes clinical advice or treatment.</p>
-        <p>If you are in crisis or experiencing a mental health emergency, please contact the 988 Suicide and Crisis Lifeline by calling or texting <strong style="color: var(--text);">988</strong>, or go to your nearest emergency room.</p>
+        <p>If you are in crisis or experiencing a mental health emergency, please contact the 988 Suicide and Crisis Lifeline by calling or texting 988, or go to your nearest emergency room.</p>
       </div>
 
       <p class="section-title">Acceptance of Terms</p>
@@ -341,7 +240,39 @@
 
       <p class="section-title">Contact</p>
       <p>Questions? Reach us at <a href="mailto:legal@rosecolored.co">legal@rosecolored.co</a>.</p>
+    </div>
 
+    <div id="delete" class="tab-panel">
+      <p class="last-updated">Last updated: April 2026</p>
+
+      <p>You have the right to delete your Rose Colored account and all associated data at any time. Here's how.</p>
+
+      <p class="section-title">How to Delete Your Account</p>
+
+      <div class="delete-box">
+        <p><strong style="color: var(--amber); font-family: 'Syne', sans-serif; font-size: 13px; letter-spacing: 0.1em;">Option 1 — In the App</strong></p>
+        <p>Go to your <strong>Profile → Settings → Delete Account</strong>. This will permanently delete your account and all associated data.</p>
+      </div>
+
+      <div class="delete-box">
+        <p><strong style="color: var(--amber); font-family: 'Syne', sans-serif; font-size: 13px; letter-spacing: 0.1em;">Option 2 — Email Request</strong></p>
+        <p>Send an email to <a href="mailto:legal@rosecolored.co?subject=Delete My Account">legal@rosecolored.co</a> with the subject line <strong>"Delete My Account"</strong> and include the email address associated with your account.</p>
+        <p>We will process your request and confirm deletion within 30 days.</p>
+      </div>
+
+      <p class="section-title">What Gets Deleted</p>
+      <p>When you delete your account, the following data is permanently removed:</p>
+      <p>— Your email address and profile information<br/>
+         — Your display name, avatar, and city<br/>
+         — Your Black Card answers and interests<br/>
+         — Your posts, comments, and messages<br/>
+         — Your connection history and activity data</p>
+
+      <p class="section-title">What May Be Retained</p>
+      <p>Aggregated, anonymized usage data that cannot be linked back to you may be retained for product improvement. Any content that has been flagged as part of a safety investigation may be retained as required by law.</p>
+
+      <p class="section-title">Questions</p>
+      <p>Contact us at <a href="mailto:legal@rosecolored.co">legal@rosecolored.co</a> with any questions about your data.</p>
     </div>
 
   </div>
